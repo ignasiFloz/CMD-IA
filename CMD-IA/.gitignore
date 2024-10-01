@@ -1,9 +1,6 @@
 .vs/
 .env
-# Ignorar directorios de usuario y temporales
 AppData/
-# Ignorar archivos de caché de navegadores
 BraveSoftware/
-# Otros directorios comunes de Windows
 Temp/
 Temporary Internet Files/

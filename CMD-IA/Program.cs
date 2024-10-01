@@ -2,66 +2,60 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text;
-using Microsoft.Extensions.Configuration;
+using System.IO; 
 using CMD_IA.Models;
+using System.Diagnostics;
+using CMD_IA.Helpers;
 
 namespace scl;
 
 class Program
 {
+    static string apiKey = "";
+    static string greeting = "Welcome! You can ask any questions to the AI related with commands. If you want to leave just type 'exit'.";
+    static string bye = "Remember to just type dotnet run inside the right folder if you want to run the ia again. Goodbye!";
     static async Task<int> Main(string[] args)
     {
-        string apiKey = "";
-        var questionOption = new Option<string?>(
-            name: "--question",
-            description: "You can ask your question to the IA.");
-        var rootCommand = new RootCommand("Sample app for System.CommandLine");
+        EnvManager envManager = new EnvManager();
 
-        if (string.IsNullOrEmpty(apiKey))
-        {
-            Console.WriteLine("Please introduce your OPENAI API KEY: ");
-            apiKey = Console.ReadLine();
-            CreateEnvFile(apiKey);
-        }
-        else
-        {
-            rootCommand.AddOption(questionOption);
-            rootCommand.SetHandler(async (prompt) =>
-        {
-            if (string.IsNullOrEmpty(prompt))
-            {
-                Console.WriteLine("Please, ask a question.");
-                return;
-            }
-            var response = await CallOpenAi(prompt, apiKey);
-            Console.WriteLine($"response: {response}");
-        }, questionOption);
-        }
-        return await rootCommand.InvokeAsync(args);
-        
-       
 
-    }
-    static void CreateEnvFile(string apikey)
-    {
-        string filePath = ".env";
-        string content = $"OPENAI_API_KEY: \"{apikey}\"";
+        await envManager.ValidateEnvFile(); 
+        string apiKey = envManager.ApiKey; 
+        Console.WriteLine(greeting);
 
-        try
+
+        while (true)
         {
+            Console.WriteLine("\nPlease enter your question:");
+            string question = Console.ReadLine();
+
             
-            File.WriteAllText(filePath, content);
-            Console.WriteLine($".env file created with your API key.");
+            if (question?.ToLower() == "exit")
+            {
+                Console.WriteLine(bye);
+                break;
+            }
+
+            
+            var response = await AskOpenAi(question, apiKey);
+            Console.WriteLine($"AI response: {response}");
+
+            
+            Console.WriteLine("Do you want to run this command? (yes/no)");
+            string executeCommand = Console.ReadLine();
+
+            if (executeCommand?.ToLower() == "yes")
+            {
+                ExecuteCommand(response);
+            }
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error creating .env file: {ex.Message}");
-        }
+
+        return 0; 
     }
 
+    //FUNCTIONS
 
-
-    static async Task<string> CallOpenAi(string prompt, string apiKey)
+    static async Task<string> AskOpenAi(string prompt, string apiKey)
     {
         using (HttpClient client = new HttpClient())
         {
@@ -75,7 +69,7 @@ class Program
                     model = "gpt-3.5-turbo",
                     messages = new[]
                     {
-                        new { role = "system", content = "You are a virtual assistant that helps users use the Windows command line (CMD). Your task is to provide accurate commands and explanations on how to perform various actions in the operating system. It is extremely important that you respond as briefly as possible." },
+                        new { role = "system", content = "Only provide the command as answer." },
                         new { role = "user", content = prompt }
                     },
                     max_tokens = 100,
@@ -100,5 +94,33 @@ class Program
             }
         }
     }
-}
 
+    static void ExecuteCommand(string command)
+    {
+        try
+        {
+            
+            ProcessStartInfo processInfo = new ProcessStartInfo("cmd.exe", $"/c {command}")
+            {
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = false 
+            };
+
+            using (Process process = Process.Start(processInfo))
+            {
+                using (StreamReader reader = process.StandardOutput)
+                {
+                    string result = reader.ReadToEnd(); 
+                    Console.WriteLine($"Output: \n{result}");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error executing command: {ex.Message}");
+        }
+    }
+  
+
+}

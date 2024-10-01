@@ -28,7 +28,6 @@ C:\Users\floz\source\repos\CMD-IA\CMD-IA\obj\Debug\net8.0\refint\CMD-IA.dll
 C:\Users\floz\source\repos\CMD-IA\CMD-IA\obj\Debug\net8.0\CMD-IA.pdb
 C:\Users\floz\source\repos\CMD-IA\CMD-IA\obj\Debug\net8.0\CMD-IA.genruntimeconfig.cache
 C:\Users\floz\source\repos\CMD-IA\CMD-IA\obj\Debug\net8.0\ref\CMD-IA.dll
-C:\Users\floz\source\repos\CMD-IA\CMD-IA\bin\Debug\net8.0\sampleQuotes.txt
 C:\Users\floz\source\repos\CMD-IA\CMD-IA\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
 C:\Users\floz\source\repos\CMD-IA\CMD-IA\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\floz\source\repos\CMD-IA\CMD-IA\bin\Debug\net8.0\Microsoft.Extensions.Configuration.FileExtensions.dll
@@ -37,3 +36,4 @@ C:\Users\floz\source\repos\CMD-IA\CMD-IA\bin\Debug\net8.0\Microsoft.Extensions.F
 C:\Users\floz\source\repos\CMD-IA\CMD-IA\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Physical.dll
 C:\Users\floz\source\repos\CMD-IA\CMD-IA\bin\Debug\net8.0\Microsoft.Extensions.FileSystemGlobbing.dll
 C:\Users\floz\source\repos\CMD-IA\CMD-IA\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+C:\Users\floz\source\repos\CMD-IA\CMD-IA\obj\Debug\net8.0\CMD-IA.sourcelink.json
