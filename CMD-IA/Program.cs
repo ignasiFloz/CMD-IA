@@ -36,8 +36,8 @@ class Program
                 break;
             }
 
-            
-            var response = await AskOpenAi(question, apiKey);
+            OpenAiManager openAiManager = new OpenAiManager();
+            var response = await openAiManager.AskOpenAi(question, apiKey);
             Console.WriteLine($"AI response: {response}");
 
             
@@ -55,45 +55,7 @@ class Program
 
     //FUNCTIONS
 
-    static async Task<string> AskOpenAi(string prompt, string apiKey)
-    {
-        using (HttpClient client = new HttpClient())
-        {
-            try
-            {
-                string apiUrl = "https://api.openai.com/v1/chat/completions";
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
-
-                var requestBody = new
-                {
-                    model = "gpt-3.5-turbo",
-                    messages = new[]
-                    {
-                        new { role = "system", content = "Only provide the command as answer." },
-                        new { role = "user", content = prompt }
-                    },
-                    max_tokens = 100,
-                    temperature = 0.7
-                };
-
-                var content = new StringContent(JsonSerializer.Serialize(requestBody), Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-                response.EnsureSuccessStatusCode();
-
-                string responseBody = await response.Content.ReadAsStringAsync();
-                var responseObject = JsonSerializer.Deserialize<OpenAiResponse>(responseBody);
-                return responseObject?.choices[0]?.message?.content ?? "No content returned.";
-            }
-            catch (HttpRequestException e)
-            {
-                return $"Error al llamar a la API: {e.Message}";
-            }
-            catch (JsonException e)
-            {
-                return $"Error de deserialización: {e.Message}";
-            }
-        }
-    }
+   
 
     static void ExecuteCommand(string command)
     {
