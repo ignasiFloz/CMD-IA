@@ -78,7 +78,22 @@ namespace CMD_IA.Helpers
                 Console.WriteLine($"Error executing command: {ex.Message}");
             }
         }
+        public void EditCommand(ref string command)
+        {
+            Console.WriteLine("Current command: " + command);
+            Console.WriteLine("Enter the new command or press Enter to keep the current command:");
+            string newCommand = Console.ReadLine();
 
+            // Si el usuario ingresa un nuevo comando, se actualiza el comando.
+            if (!string.IsNullOrWhiteSpace(newCommand))
+            {
+                command = newCommand;
+            }
+            else
+            {
+                Console.WriteLine("Command remains unchanged.");
+            }
+        }
 
     }
 }

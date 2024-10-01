@@ -66,10 +66,15 @@ Ahora tienes un acceso directo en tu escritorio que puedes hacer doble clic para
 
 How to use --------------------------------------------------------------------------
 
-once you are inside your api key will be asked, after you introduce it, you will be able to make any question to the IA , also after the response the ia will ask if you want to run this command. type yes or no.
+once you are inside your api key will be asked, after you introduce it, you will be able to make any question to the IA ,
+also after the response the ia will ask if you want to run this command edit it or leave. type edit and then make the changes 
+you want.
 
 
 
 Cómo usar --------------------------------------------------------------------------
 
-Una vez que estés dentro, se te pedirá que introduzcas tu clave de API. Después de introducirla, podrás hacer cualquier pregunta a la IA. Además, después de la respuesta, la IA te preguntará si deseas ejecutar este comando. Escribe "sí" o "no".
+Una vez que estés dentro, se te pedirá que introduzcas tu clave de API. Después de introducirla, 
+podrás hacer cualquier pregunta a la IA. Además, después de la respuesta, la IA te preguntará si deseas ejecutar este comando. 
+deberas introducir los comandos en ingles. pero se te dara la opcion de ejecutarlo editarlo o salir, si escribes "edit" seras capaz 
+de cambiar lo que necesites del comando para entonces ejecutarlo. 
