@@ -6,17 +6,20 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using CMD_IA.Helpers;
 
 namespace CMD_IA.Helpers
 {
     internal class OpenAiManager
     {
+        CommandHelper commandHelper = new CommandHelper();
         public async Task<string> AskOpenAi(string prompt, string apiKey)
         {
             using (HttpClient client = new HttpClient())
             {
                 try
                 {
+                    
                     string apiUrl = "https://api.openai.com/v1/chat/completions";
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
@@ -25,7 +28,7 @@ namespace CMD_IA.Helpers
                         model = "gpt-3.5-turbo",
                         messages = new[]
                         {
-                        new { role = "system", content = "Only provide the command as answer." },
+                        new { role = "system", content = $"Only provide the command from the {commandHelper.OperativeSystem} operative system as answer." },
                         new { role = "user", content = prompt }
                     },
                         max_tokens = 100,

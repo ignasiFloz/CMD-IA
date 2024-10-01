@@ -38,7 +38,7 @@ class Program
             }
 
             var response = await openAiManager.AskOpenAi(question, apiKey);
-            Console.WriteLine($"AI response: {response}");
+            Console.WriteLine($"Ai response: {response}");
 
             
             Console.WriteLine("Do you want to run this command? (yes/no)");
