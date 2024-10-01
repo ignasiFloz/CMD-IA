@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CMD-IA")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+30a45dfa63a72819f383c80ef98aebba1ea9d8f7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62b966dad439d2ba4b4ccb19f54a6c8b628af5bb")]
 [assembly: System.Reflection.AssemblyProductAttribute("CMD-IA")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CMD-IA")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
