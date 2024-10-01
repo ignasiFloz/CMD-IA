@@ -59,3 +59,17 @@ Arrastra el Acceso Directo a tu Escritorio: Después de crear el acceso directo,
 
 Conclusión
 Ahora tienes un acceso directo en tu escritorio que puedes hacer doble clic para lanzar rápidamente CMD-IA sin necesidad de navegar a la carpeta del proyecto cada vez. ¡Disfruta usando CMD-IA!
+
+
+
+
+
+How to use --------------------------------------------------------------------------
+
+once you are inside your api key will be asked, after you introduce it, you will be able to make any question to the IA , also after the response the ia will ask if you want to run this command. type yes or no.
+
+
+
+Cómo usar --------------------------------------------------------------------------
+
+Una vez que estés dentro, se te pedirá que introduzcas tu clave de API. Después de introducirla, podrás hacer cualquier pregunta a la IA. Además, después de la respuesta, la IA te preguntará si deseas ejecutar este comando. Escribe "sí" o "no".
