@@ -11,13 +11,14 @@ namespace scl;
 
 class Program
 {
-    static string apiKey = "";
+    
     static string greeting = "Welcome! You can ask any questions to the AI related with commands. If you want to leave just type 'exit'.";
     static string bye = "Remember to just type dotnet run inside the right folder if you want to run the ia again. Goodbye!";
     static async Task<int> Main(string[] args)
     {
         EnvManager envManager = new EnvManager();
-
+        OpenAiManager openAiManager = new OpenAiManager();
+        CommandHelper commandHelper = new CommandHelper();  
 
         await envManager.ValidateEnvFile(); 
         string apiKey = envManager.ApiKey; 
@@ -36,7 +37,6 @@ class Program
                 break;
             }
 
-            OpenAiManager openAiManager = new OpenAiManager();
             var response = await openAiManager.AskOpenAi(question, apiKey);
             Console.WriteLine($"AI response: {response}");
 
@@ -46,43 +46,12 @@ class Program
 
             if (executeCommand?.ToLower() == "yes")
             {
-                ExecuteCommand(response);
+                commandHelper.ExecuteCommand(response);
             }
         }
 
         return 0; 
-    }
+    } 
 
-    //FUNCTIONS
-
-   
-
-    static void ExecuteCommand(string command)
-    {
-        try
-        {
-            
-            ProcessStartInfo processInfo = new ProcessStartInfo("cmd.exe", $"/c {command}")
-            {
-                RedirectStandardOutput = true,
-                UseShellExecute = false,
-                CreateNoWindow = false 
-            };
-
-            using (Process process = Process.Start(processInfo))
-            {
-                using (StreamReader reader = process.StandardOutput)
-                {
-                    string result = reader.ReadToEnd(); 
-                    Console.WriteLine($"Output: \n{result}");
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error executing command: {ex.Message}");
-        }
-    }
-  
 
 }
